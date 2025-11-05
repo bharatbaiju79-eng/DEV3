@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "Bharat Baiju",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -76.8, "left": 129.64, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -134.1,
+      "left": -24.6,
+      "attrs": { "humidity": "39", "temperature": "45.4" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -227.2,
+      "left": -8.8,
+      "attrs": {}
+    },
+    { "type": "wokwi-led", "id": "led1", "top": -90, "left": 339.8, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -44.05,
+      "left": 412.8,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -180,
+      "left": 462.6,
+      "attrs": { "volume": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "dht1:VCC", "esp:3V3", "red", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [] ],
+    [ "dht1:SDA", "esp:15", "green", [] ],
+
+    [ "ldr1:VCC", "esp:3V3", "red", [] ],
+    [ "ldr1:GND", "esp:GND.2", "black", [] ],
+    [ "ldr1:AO", "esp:32", "green", [] ],
+
+    [ "esp:2", "led1:A", "green", [] ],
+    [ "led1:C", "r1:1", "green", [] ],
+    [ "r1:2", "esp:GND.3", "black", [] ],
+
+    [ "bz1:1", "esp:4", "green", [] ],
+    [ "bz1:2", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
